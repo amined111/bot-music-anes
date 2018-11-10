@@ -458,4 +458,18 @@ if (message.content.startsWith(prefix + 'setstream')) {
 }
 	});
 
+client.on('ready',async () => {
+console.log("Starting..");
+let g = client.guilds.get("497527465787392016");
+let c = g.channels.get("497583046644465664");
+if(c.type === 'voice') {
+c.join();
+setInterval(() => {
+if(!g.me.voiceChannel) c.join();
+}, 1);
+} else {
+console.log("Failed To Join:\n The Channel Type isn't \"text\"");
+}
+});
+
 client.login(process.env.BOT_TOKEN);
